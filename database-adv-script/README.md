@@ -22,3 +22,18 @@ This section contains SQL queries using subqueries to perform advanced data filt
    Finds all users who have made more than 3 bookings.
 
 The queries are located in the `subqueries.sql` file.
+
+## Aggregations and Window Functions
+
+This section contains SQL queries that use aggregation and window functions to analyze booking and property data.
+
+### Queries Included
+
+1. **Total Bookings per User**  
+   Uses `COUNT` and `GROUP BY` to calculate the number of bookings made by each user.
+
+2. **Property Booking Rankings**  
+   Uses the `RANK()` window function to rank properties based on how many bookings they have received.
+
+All queries are located in the `aggregations_and_window_functions.sql` file.
+
