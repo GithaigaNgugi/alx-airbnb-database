@@ -1,4 +1,4 @@
--- Step 1: Initial Query (Complex join across multiple tables)
+-- Step 1: Initial Query (Before optimization)
 EXPLAIN
 SELECT
     b.id AS booking_id,
@@ -13,10 +13,11 @@ SELECT
 FROM bookings b
 JOIN users u ON b.user_id = u.id
 JOIN properties p ON b.property_id = p.id
-LEFT JOIN payments pay ON b.id = pay.booking_id;
+LEFT JOIN payments pay ON b.id = pay.booking_id
+WHERE pay.status = 'completed'
+  AND b.created_at >= '2024-01-01';
 
--- Step 2: Refactored Query for performance
--- Assume necessary indexes on user_id, property_id, and booking_id already exist
+-- Step 2: Refactored Query (After optimization)
 EXPLAIN
 SELECT
     b.id AS booking_id,
@@ -26,4 +27,6 @@ SELECT
 FROM bookings b
 JOIN users u ON b.user_id = u.id
 JOIN properties p ON b.property_id = p.id
-LEFT JOIN payments pay ON b.id = pay.booking_id;
+LEFT JOIN payments pay ON b.id = pay.booking_id
+WHERE pay.status = 'completed'
+  AND b.created_at >= '2024-01-01';
